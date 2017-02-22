@@ -7,25 +7,16 @@ import java.util.Stack;
  */
 public class Brackets {
     public static boolean isCorrect(String str) {
-        Integer left = 0;
-        Integer right = 0;
 
-        Integer type;
         Stack<Integer> typesStack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
 
             if (ch == '(' || ch == '[' || ch == '{') {
-                type = getType(ch);
-                left++;
-                typesStack.add(type);
+                typesStack.add(getType(ch));
             } else {
 
-                right++;
-
-                if (right > left) {
-                    return false;
-                }
+                if (typesStack.isEmpty()) return false;
 
                 if (!typesStack.pop().equals(getType(ch))) {
                     return false;
@@ -33,7 +24,7 @@ public class Brackets {
             }
         }
 
-        return left.equals(right);
+        return typesStack.isEmpty();
     }
 
     private static Integer getType(char ch) {

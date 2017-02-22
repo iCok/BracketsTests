@@ -74,4 +74,10 @@ public class BracketsTest {
         boolean isCorrect = Brackets.isCorrect("(){}[]{[]()}");
         assertTrue(isCorrect);
     }
+
+    @Test
+    public void noOpenBracketShouldReturnFalse() throws Exception {
+        boolean isCorrect = Brackets.isCorrect(")))");
+        assertFalse(isCorrect);
+    }
 }
