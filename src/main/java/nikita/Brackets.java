@@ -1,7 +1,6 @@
 package nikita;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Cok on 22.02.2017.
@@ -12,14 +11,14 @@ public class Brackets {
         Integer right = 0;
 
         Integer type;
-        List<Integer> types = new ArrayList<>();
+        Stack<Integer> typesStack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
 
             if (ch == '(' || ch == '[' || ch == '{') {
                 type = getType(ch);
                 left++;
-                types.add(type);
+                typesStack.add(type);
             } else {
 
                 right++;
@@ -28,10 +27,8 @@ public class Brackets {
                     return false;
                 }
 
-                if (!types.get(types.size() - 1).equals(getType(ch))) {
+                if (!typesStack.pop().equals(getType(ch))) {
                     return false;
-                } else {
-                    types.remove(types.size() - 1);
                 }
             }
         }
