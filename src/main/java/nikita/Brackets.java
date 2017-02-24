@@ -1,6 +1,7 @@
 package nikita;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * Created by Cok on 22.02.2017.
@@ -8,12 +9,12 @@ import java.util.Stack;
 public class Brackets {
     public static boolean isCorrect(String str) {
 
-        Stack<Integer> typesStack = new Stack<>();
+        Deque<Integer> typesStack = new ArrayDeque<>();
         for (int i = 0; i < str.length(); i++) {
             char ch = str.charAt(i);
 
             if (ch == '(' || ch == '[' || ch == '{') {
-                typesStack.add(getType(ch));
+                typesStack.addFirst(getType(ch));
             } else {
 
                 if (typesStack.isEmpty()) return false;
